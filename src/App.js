@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import GridBoard from './components/grid-board'
+import NextBlock from './components/next-block'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <h1 className='tetris-header'> Tetris </h1>
       </header>
       <GridBoard/>
+      <NextBlock />
     </div>
   );
 }
