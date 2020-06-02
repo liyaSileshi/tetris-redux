@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
-import GridSquare from './components/grid-square'
+import GridBoard from './components/grid-board'
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1 className='tetris-header'> Tetris </h1>
       </header>
-      <GridSquare color='1'/>
+      <GridBoard/>
     </div>
   );
 }
