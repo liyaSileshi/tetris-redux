@@ -68,4 +68,4 @@ const mapDispatchToProps = () => {
 }
 
 //connect the component
-export default connect(mapStateToProps, mapDispatchToProps)(GridBoard);
+export default connect(mapStateToProps, mapDispatchToProps())(GridBoard);
