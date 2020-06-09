@@ -4,34 +4,34 @@ import {moveDown, moveLeft, moveRight, rotate} from '../actions'
 
 class Controls extends Component {
   render() {
-    const {isRunning} = this.props
+    const {isRunning, gameOver} = this.props
     return (
       <div className="controls">
         {/* left */}
         <button className="control-button" onClick={(e) => {
           // check if it's not paused
-          if(!isRunning) { return }
+          if(!isRunning || gameOver) { return }
           this.props.moveLeft()
         }}>Left</button>
 
         {/* right */}
         <button className="control-button" onClick={(e) => {
           // check if it's not paused
-          if(!isRunning){ return }
+          if(!isRunning || gameOver){ return }
           this.props.moveRight()
         }}>Right</button>
 
         {/* rotate */}
         <button className="control-button" onClick={(e) => {
           // check if it's not paused
-          if(!isRunning){ return }
+          if(!isRunning || gameOver){ return }
           this.props.rotate()
         }}>Rotate</button>
 
         {/* down */}
         <button className="control-button" onClick={(e) => {
           // check if it's not paused
-          if(!isRunning){ return }
+          if(!isRunning || gameOver){ return }
           this.props.moveDown()
         }}>Down</button>
       </div>
@@ -41,7 +41,8 @@ class Controls extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      isRunning : state.game.isRunning
+      isRunning : state.game.isRunning,
+      gameOver : state.game.gameOver
   }
 }
 

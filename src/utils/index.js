@@ -159,7 +159,7 @@ export const defaultState = () => {
     // set the score to 0
     score: 0,
     // set the default speed
-    speed: 1000,
+    speed: 100,
     // game isn't over yet
     gameOver: false
   }
@@ -206,6 +206,8 @@ export const canMoveTo = (shape, grid, x, y, rotation) => {
 
 //adds current shape to grid
 export const addBlockToGrid = (shape, grid, x, y, rotation) => {
+  // at this point the game is not over
+  let blockOffGrid = false
   //get the block array
   const block = shapes[shape][rotation]
   //copy the grid
@@ -214,11 +216,19 @@ export const addBlockToGrid = (shape, grid, x, y, rotation) => {
   for (let row = 0; row < block.length; row++) {
     for (let col = 0; col < block[row].length; col++) {
       if(block[row][col]) {
-        newGrid[row+y][col+x] = shape
+        const yIndex = row + y
+        // if the yIndex is less than 0, part of the block
+        // is off the top of the screen and the game is over
+        if(yIndex < 0) {
+          blockOffGrid = true
+        } else {
+          newGrid[row+y][col+x] = shape
+        }
       }
     }
   }
-  return newGrid;
+  // return both newGrid and gameOver bool as an object
+  return {grid: newGrid, gameOver: blockOffGrid};
 }
 
 // Checks for completed rows and scores points
