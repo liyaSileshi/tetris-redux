@@ -1,11 +1,35 @@
+
 {
-  "name": "tetris-redux",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
+  "author": {
+  "name": "Liya",
+  "email": "liyasileshi@gmail.com",
+  "url": "https://liyasileshi.com"
+  },
+  "build": {
+    "appId": "com.liya.tetris",
+    "productName": "Tetris",
+    "copyright": "Copyright © 2020 Liya",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+    "homepage": "./",
+    "main": "public/electron.js",
+    "name": "tetris-redux",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -13,10 +37,14 @@
     "redux": "^4.0.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "electron-builder -mw"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,5 +60,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.14",
+    "@rescripts/rescript-env": "^0.0.12",
+    "concurrently": "^5.2.0",
+    "electron": "^9.0.3",
+    "electron-builder": "^22.7.0",
+    "typescript": "^3.9.5",
+    "wait-on": "^5.0.1"
   }
 }
